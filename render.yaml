@@ -1,0 +1,38 @@
+services:
+  - type: cron
+    name: alpaca-trading-agent
+    runtime: python
+    region: virginia
+    plan: starter
+    # Every 15 min, Mon-Fri, 13:00-20:59 UTC. Covers US market hours in both EST and EDT;
+    # the agent checks Alpaca's market clock and exits if the market is closed.
+    schedule: "*/15 13-20 * * 1-5"
+    buildCommand: pip install -r requirements.txt
+    startCommand: python -m agent.main
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.12.7"
+      - key: ALPACA_API_KEY_ID
+        sync: false        # you paste this in Render when deploying
+      - key: ALPACA_API_SECRET_KEY
+        sync: false
+      - key: ALPACA_BASE_URL
+        value: https://paper-api.alpaca.markets
+      - key: WATCHLIST
+        value: SPY,QQQ,AAPL,MSFT,NVDA,AMZN,GOOGL,META,JPM,XOM
+      - key: MAX_POSITION_PCT
+        value: "0.10"
+      - key: MAX_POSITIONS
+        value: "5"
+      - key: MAX_INVESTED_PCT
+        value: "0.80"
+      - key: STOP_LOSS_PCT
+        value: "0.05"
+      - key: TAKE_PROFIT_PCT
+        value: "0.12"
+      - key: DAILY_LOSS_LIMIT_PCT
+        value: "0.03"
+      - key: DRY_RUN
+        value: "false"
+      - key: ALLOW_LIVE_TRADING
+        value: "false"
