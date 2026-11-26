@@ -40,3 +40,11 @@ python -m unittest      # offline tests, no keys needed
 ```
 
 This is a rule-based starting point, not a proven strategy. Keep it on paper until it has a track record you trust.
+## Disclaimer
+This project is for learning and experimentation. It is not financial advice, and simulated results do not predict future returns. It trades on a paper (simulated) account by default; switching to a live account is at your own risk. Never commit API keys or a .env file; keep them in Render's environment settings.
+
+## Author
+Ziyad Faraj | [LinkedIn](https://www.linkedin.com/in/ziyaddesigns) | [GitHub](https://github.com/Ziyaddesigns)
+
+## License
+MIT. See [LICENSE](LICENSE).
